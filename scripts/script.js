@@ -10,11 +10,13 @@ window.onload = function() {
     function checkSections() {
         const triggerBottom = window.innerHeight * 0.85;
 
+        // Fade in sections
         sections.forEach(section => {
             const sectionTop = section.getBoundingClientRect().top;
             if(sectionTop < triggerBottom) section.classList.add("visible");
         });
 
+        // Fade in footer
         const footerTop = footer.getBoundingClientRect().top;
         if(footerTop < triggerBottom) footer.classList.add("visible");
 
@@ -31,13 +33,12 @@ window.onload = function() {
             });
         }
 
-        // Active navbar highlighting
+        // Active nav highlighting
         sections.forEach(section => {
             const sectionTop = section.getBoundingClientRect().top;
             const sectionHeight = section.offsetHeight;
             const id = section.getAttribute("id");
-
-            if(sectionTop <= window.innerHeight/2 && sectionTop + sectionHeight >= window.innerHeight/2) {
+            if(window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight) {
                 navLinks.forEach(link => link.classList.remove("active"));
                 const activeLink = document.querySelector(`header nav ul li a[href="#${id}"]`);
                 if(activeLink) activeLink.classList.add("active");
