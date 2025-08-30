@@ -10,13 +10,12 @@ window.onload = function() {
     function checkSections() {
         const triggerBottom = window.innerHeight * 0.85;
 
-        // Fade in sections
+        // Fade-in sections
         sections.forEach(section => {
             const sectionTop = section.getBoundingClientRect().top;
             if(sectionTop < triggerBottom) section.classList.add("visible");
         });
 
-        // Fade in footer
         const footerTop = footer.getBoundingClientRect().top;
         if(footerTop < triggerBottom) footer.classList.add("visible");
 
@@ -34,11 +33,12 @@ window.onload = function() {
         }
 
         // Active nav highlighting
+        const scrollPos = window.scrollY + window.innerHeight / 2; // midpoint
         sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const sectionHeight = section.offsetHeight;
+            const top = section.offsetTop;
+            const bottom = top + section.offsetHeight;
             const id = section.getAttribute("id");
-            if(window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight) {
+            if(scrollPos >= top && scrollPos < bottom) {
                 navLinks.forEach(link => link.classList.remove("active"));
                 const activeLink = document.querySelector(`header nav ul li a[href="#${id}"]`);
                 if(activeLink) activeLink.classList.add("active");
@@ -46,8 +46,21 @@ window.onload = function() {
         });
     }
 
+    // Smooth scroll for navbar links
+    navLinks.forEach(link => {
+        link.addEventListener("click", function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            const targetSection = document.getElementById(targetId);
+            window.scrollTo({
+                top: targetSection.offsetTop - 50, // offset for sticky header
+                behavior: "smooth"
+            });
+        });
+    });
+
     window.addEventListener("scroll", checkSections);
-    checkSections();
+    checkSections(); // trigger on load
 
     // Header scroll effect
     window.addEventListener("scroll", function() {
