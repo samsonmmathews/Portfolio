@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
     console.log("Portfolio Loaded Successfully!");
 
     const sections = document.querySelectorAll("section");
@@ -13,22 +13,22 @@ window.onload = function() {
         // Fade-in sections
         sections.forEach(section => {
             const sectionTop = section.getBoundingClientRect().top;
-            if(sectionTop < triggerBottom) section.classList.add("visible");
+            if (sectionTop < triggerBottom) section.classList.add("visible");
         });
 
         const footerTop = footer.getBoundingClientRect().top;
-        if(footerTop < triggerBottom) footer.classList.add("visible");
+        if (footerTop < triggerBottom) footer.classList.add("visible");
 
         // Animate skill bars
         const skillsSection = document.querySelector("#skills");
         const skillsTop = skillsSection.getBoundingClientRect().top;
-        if(skillsTop < triggerBottom) {
+        if (skillsTop < triggerBottom) {
             skillFills.forEach(fill => {
-                if(fill.classList.contains("html")) fill.style.width="90%";
-                if(fill.classList.contains("css")) fill.style.width="85%";
-                if(fill.classList.contains("js")) fill.style.width="80%";
-                if(fill.classList.contains("python")) fill.style.width="75%";
-                if(fill.classList.contains("sql")) fill.style.width="70%";
+                if (fill.classList.contains("html")) fill.style.width = "90%";
+                if (fill.classList.contains("css")) fill.style.width = "85%";
+                if (fill.classList.contains("js")) fill.style.width = "80%";
+                if (fill.classList.contains("python")) fill.style.width = "75%";
+                if (fill.classList.contains("sql")) fill.style.width = "70%";
             });
         }
 
@@ -38,17 +38,17 @@ window.onload = function() {
             const top = section.offsetTop;
             const bottom = top + section.offsetHeight;
             const id = section.getAttribute("id");
-            if(scrollPos >= top && scrollPos < bottom) {
+            if (scrollPos >= top && scrollPos < bottom) {
                 navLinks.forEach(link => link.classList.remove("active"));
                 const activeLink = document.querySelector(`header nav ul li a[href="#${id}"]`);
-                if(activeLink) activeLink.classList.add("active");
+                if (activeLink) activeLink.classList.add("active");
             }
         });
     }
 
     // Smooth scroll for navbar links
     navLinks.forEach(link => {
-        link.addEventListener("click", function(e) {
+        link.addEventListener("click", function (e) {
             e.preventDefault();
             const targetId = this.getAttribute("href").substring(1);
             const targetSection = document.getElementById(targetId);
@@ -63,8 +63,8 @@ window.onload = function() {
     checkSections(); // trigger on load
 
     // Header scroll effect
-    window.addEventListener("scroll", function() {
-        if(window.scrollY > 50) header.classList.add("scrolled");
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 50) header.classList.add("scrolled");
         else header.classList.remove("scrolled");
     });
 };
