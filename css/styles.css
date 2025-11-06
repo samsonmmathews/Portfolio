@@ -306,11 +306,6 @@ footer.visible {
         gap: 1.5em;
     }
 
-    /* .about-container {
-        flex-direction: column;
-        align-items: center;
-    } */
-
     .skills-container {
         padding: 4em 2em;
         /* flex-direction: column; */
