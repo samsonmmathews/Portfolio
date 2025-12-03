@@ -221,7 +221,7 @@ header nav ul li a.active {
     margin-top: 0.5em;
 }
 
-.github-btn {
+.visit-btn {
     padding: 0.5em 1em;
     background: #00758f;
     color: #fff;
@@ -231,7 +231,7 @@ header nav ul li a.active {
     transition: transform 0.3s ease, background 0.3s ease;
 }
 
-.github-btn:hover {
+.visit-btn:hover {
     background: #005f6b;
     transform: scale(1.05);
 }
